@@ -9,9 +9,15 @@ This project aims to analyze coffee shop sales data and integrate external weath
 
 The project may also include a simple machine learning model to forecast sales based on historical sales and weather data. The model’s primary goal is to provide insights on how weather impacts coffee shop sales.
 
+## Project Workflow Diagram
+
+Below is the workflow diagram illustrating the end-to-end process of the Coffee Shop Sales Analysis project, from data collection to dashboard deployment:
+
+![](diagram/workflow_diagram.png)
+
 ## Project Workflow
 
-Data Collection & Storage
+**Data Collection & Storage**
 
 Coffee shop sales data is loaded from a local CSV file into an SQL database.
 
@@ -33,13 +39,13 @@ Exploratory Data Analysis (EDA) is conducted to uncover patterns and trends.
 
 Visualizations are created using Matplotlib and Seaborn to illustrate sales patterns, top products, and location performance.
 
-Machine Learning (Optional)
+**Machine Learning**
 
 A simple model is built to forecast sales based on historical and weather data.
 
 The model helps explore the relationship between weather conditions and sales performance.
 
-Streamlit Dashboard
+**Streamlit Dashboard**
 
 All insights and results are presented in an interactive Streamlit dashboard.
 
