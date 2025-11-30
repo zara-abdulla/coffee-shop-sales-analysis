@@ -7,7 +7,7 @@ End-to-end Coffee Shop Sales Analysis project integrating CSV sales data and wea
 
 This project aims to analyze coffee shop sales data and integrate external weather information via an API to build an interactive Streamlit dashboard. The goal is to understand overall sales patterns, customer behavior, and potential relationships between weather conditions and product demand.
 
-The project may also include a simple machine learning model to forecast sales based on historical sales and weather data. The model’s primary goal is to provide insights on how weather impacts coffee shop sales.
+The project also includes a simple machine learning model to forecast sales based on historical sales and weather data. The model’s primary goal is to provide insights on how weather impacts coffee shop sales.
 
 ## Project Workflow Diagram
 
