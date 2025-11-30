@@ -1,2 +1,2 @@
-# Restaurant_Sales_Analysis
-Predicting and visualizing restaurant sales using Python, SQL, and weather API data.
+# Coffee-Shop-Sales-Analysis
+End-to-end Coffee Shop Sales Analysis project integrating CSV sales data and weather API data into SQL, followed by data cleaning, EDA, visualization, ML forecasting, and a final interactive Streamlit dashboard.
