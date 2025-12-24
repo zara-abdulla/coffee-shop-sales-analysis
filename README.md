@@ -1,6 +1,6 @@
 # Coffee Shop Sales Analysis - End To End Project
 
-End-to-end Coffee Shop Sales Analysis project integrating CSV sales data and weather API data into SQL, followed by data cleaning, EDA, visualization, ML forecasting, and a final interactive Streamlit dashboard.
+An end-to-end data analysis project focused on coffee shop sales, combining sales data with external weather data to perform data analysis, visualization, machine learning forecasting, and present insights through an interactive Streamlit dashboard.
 
 
 ## Project Overview
@@ -9,52 +9,54 @@ This project aims to analyze coffee shop sales data and integrate external weath
 
 The project also includes a simple machine learning model to forecast sales based on historical sales and weather data. The model’s primary goal is to provide insights on how weather impacts coffee shop sales.
 
+
 ## Project Workflow Diagram
 
-Below is the workflow diagram illustrating the end-to-end process of the Coffee Shop Sales Analysis project, from data collection to dashboard deployment:
+Below is the workflow diagram illustrating the end-to-end process of the Coffee Shop Sales Analysis project, from data collection to dashboard deployment.
 
 ![](images/diagram_gif.gif)
 
 ## Project Workflow
 
-**Data Collection & Storage**
+### **Data Collection**
 
-Coffee shop sales data is loaded from a local CSV file into an SQL database.
+- **Coffee shop sales data** is loaded from a local Excel file into Python.
 
-Weather data is collected from an external API and stored in the same SQL database.
+- **Weather data** is collected from an external API.
 
-SQL → Python Processing
 
-Data is retrieved from SQL into Python.
 
-Initial data preprocessing is performed:
+### **Exploratory Data Analysis & Visualization**
 
-- Data cleaning
+- Exploratory Data Analysis (EDA) is conducted to uncover patterns and trends.
+- Data cleaning, preprocessing, and feature extraction are performed.
+- Visualizations are created using **Matplotlib** and **Seaborn** to analyze:
+  - Sales trends
+  - Top-selling products
+  - Store location performance
 
-- Type conversions
+### **Data Storage (Python → Dockerized MySQL)**
 
-- Handling missing values
+- Cleaned and processed sales data is stored in a **Dockerized MySQL database**.
+- Weather data fetched from the API is also stored in the same database.
+- This setup ensures structured storage, reproducibility, and readiness for modeling.
 
-Exploratory Data Analysis (EDA) is conducted to uncover patterns and trends.
 
-Visualizations are created using Matplotlib and Seaborn to illustrate sales patterns, top products, and location performance.
+### **Machine Learning**
 
-**Machine Learning**
+- Sales and weather data are retrieved from MySQL.
+- A simple machine learning model is built to forecast sales.
+- The model helps explore the relationship between weather conditions and sales performance.
 
-A simple model is built to forecast sales based on historical and weather data.
+### **Streamlit Dashboard**
 
-The model helps explore the relationship between weather conditions and sales performance.
-
-**Streamlit Dashboard**
-
-All insights and results are presented in an interactive Streamlit dashboard.
-
-Users can explore sales trends by category, time, store location, and see potential impacts of weather on sales.
+- All insights and results are presented in an interactive **Streamlit dashboard**
 
 ## Team Members
 
-**This project will be carried out by**:
 
 - [**Zahra Abdullayeva**](https://github.com/zara-abdulla) 
-- [**Sevinc Qiyasova**](https://github.com/sevinc-giyasova) 
+
 - [**Ziyafet Rzayeva**](https://github.com/Ziyafat98)
+
+- [**Sevinc Qiyasova**](https://github.com/sevinc-giyasova) 
