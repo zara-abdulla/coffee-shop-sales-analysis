@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+  mysql:
+    restart: always
+    image: mysql
+    container_name: mysql
+    ports:
+      - "3306:3306"
+    env_file:
+      - .env
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - mysql_data:/var/lib/mysql 
+      - ./sql_scripts:/docker-entrypoint-initdb.d
+    networks:
+      custom-network:
+        ipv4_address: 172.20.0.2
+
+
+networks:
+  custom-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+volumes:
+  mysql_data:
