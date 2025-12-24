@@ -13,7 +13,7 @@ The project also includes a simple machine learning model to forecast sales base
 
 Below is the workflow diagram illustrating the end-to-end process of the Coffee Shop Sales Analysis project, from data collection to dashboard deployment:
 
-![](images/workflow.png)
+![](images/diagram_gif.gif)
 
 ## Project Workflow
 
