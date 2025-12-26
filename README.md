@@ -44,8 +44,8 @@ Below is the workflow diagram illustrating the end-to-end process of the Coffee 
 
 ### **Machine Learning**
 
-- Sales and weather data are retrieved from MySQL.
-- A simple machine learning model is built to forecast sales.
+- Coffee sales and daily weather data are retrieved from a Dockerized MySQL database.  
+- A Random Forest model is built to predict daily sales.
 - The model helps explore the relationship between weather conditions and sales performance.
 
 ### **Streamlit Dashboard**
