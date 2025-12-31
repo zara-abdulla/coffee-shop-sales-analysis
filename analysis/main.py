@@ -6,6 +6,7 @@ from joblib import load
 from pathlib import Path
 import calendar
 
+
 # ---------- Store mapping ----------
 STORE_MAP = {
     "Astoria": 3,
@@ -27,9 +28,11 @@ for k, v in defaults.items():
     if k not in st.session_state:
         st.session_state[k] = v
 
+
 # ---------- Session state ----------
 if "pred" not in st.session_state:
     st.session_state["pred"] = None
+
 
 # ---------- Load model ----------
 MODEL_PATH = Path(__file__).resolve().parent / "model_new.joblib"
@@ -39,6 +42,7 @@ def load_model():
     return load(MODEL_PATH)
 
 rf_model = load_model()
+
 
 # ---------- Prediction function ----------
 def make_prediction():
@@ -58,14 +62,27 @@ def make_prediction():
 
 # ---------- UI ----------
 st.title("☕ Coffee Shop Sales Predictor")
-st.caption("Predict daily sales based on store, date, and temperature")
+st.markdown(" #### Predict daily sales based on store, date, and temperature")
 st.markdown("---")  # horizontal line for separation
 st.image("https://tenor.com/view/coffee-coffee-shop-cafe-street-gif-17572486.gif", width=450)
+st.markdown(
+    """
+    <style>
+    .stApp {
+        /* Ombre: Dark Blue -> Cornflower */
+        background: linear-gradient(to bottom, #061e47, #68a4f1);
+    }
+    .stButton>button {
+        background-color: #2b6ad0;  /* Royal Blue button */
+        color: #fafafc;             /* Ivory text */
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 
-
-
-# -------- Inputs (REAL-TIME) --------
+# -------- Inputs --------
 col1, col2, col3 = st.columns(3)
 
 with col1:
@@ -88,6 +105,7 @@ max_day = calendar.monthrange(
     st.session_state.month_num
 )[1]
 
+
 col4, col5 = st.columns(2)
 
 with col4:
@@ -104,17 +122,37 @@ with col5:
     )
 
 
+
+
 # -------- Predict button --------
+st.markdown(
+    """
+    <style>
+    .stButton>button {
+        background:#2d1674; color:#fafafc; font-size:16px; border-radius:8px;
+    }
+    .stButton>button:hover { background:#1f0f5a; }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 if st.button("Get Sales Forecast"):
     make_prediction()
+
+
 
 # -------- Result --------
 if st.session_state["pred"] is not None:
     st.metric("Predicted Sales", value=f"${st.session_state['pred']}",
         delta=None)
 else:
-    st.info("Enter the inputs and click **Get Sales Forecast**")
-
-
+     st.markdown(
+        """
+        <div style='background-color:#93a387; color:#fafafc; padding:10px; border-radius:5px'>
+        Enter the inputs and click <b>Get Sales Forecast</b>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
 #streamlit run analysis/main.py
