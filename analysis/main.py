@@ -4,6 +4,7 @@ import streamlit as st
 import pandas as pd
 from joblib import load
 from pathlib import Path
+import calendar
 
 # ---------- Session state ----------
 if "pred" not in st.session_state:
@@ -31,53 +32,61 @@ def make_prediction():
     pred = rf_model.predict(X_pred)
     st.session_state["pred"] = round(pred[0], 2)
 
+defaults = {
+    "store_id": 3,
+    "year_num": 2023,
+    "month_num": 1,
+    "day_num": 1,
+    "avg_temp": 10,
+    "pred": None,
+}
+
+for k, v in defaults.items():
+    if k not in st.session_state:
+        st.session_state[k] = v
+
 # ---------- UI ----------
 st.title("☕ Coffee Shop Sales Predictor")
 st.caption("Predict daily sales based on store, date, and temperature")
 
-with st.form("sales_form"):
-    col1, col2, col3 = st.columns(3)
+# -------- Inputs (REAL-TIME) --------
+col1, col2, col3 = st.columns(3)
 
-    with col1:
-         st.selectbox(
-        "Store ID",
-        options=[3, 5, 8],
-        key="store_id")
+with col1:
+    st.selectbox("Store ID", [3, 5, 8], key="store_id")
 
-    with col2:
-        st.selectbox("Year", [2023, 2024], key="year_num")
+with col2:
+    st.selectbox("Year", [2023, 2024], key="year_num")
 
-    with col3:
-        st.selectbox(
-        "Month",
-        options=list(range(1, 13)),
-        key="month_num")
+with col3:
+    st.selectbox("Month", list(range(1, 13)), key="month_num")
 
-    col4, col5 = st.columns(2)
+# Dynamic day logic
+max_day = calendar.monthrange(
+    st.session_state.year_num,
+    st.session_state.month_num
+)[1]
 
-    import calendar
+col4, col5 = st.columns(2)
 
-    max_day = calendar.monthrange(
-        st.session_state.year_num,
-        st.session_state.month_num
-        )[1]
+with col4:
+    st.selectbox("Day", list(range(1, max_day + 1)), key="day_num")
 
-    with col4:
-        st.selectbox(
-        "Day",
-        options=list(range(1, max_day + 1)),
-        key="day_num"
+with col5:
+    st.number_input(
+        "Avg Temperature (°C)",
+        min_value=-30.0,
+        max_value=40.0,
+        step=1.0,
+        key="avg_temp"
     )
 
-    with col5:
-        st.number_input("Avg Temperature (°C)", key="avg_temp")
 
-    submitted = st.form_submit_button("Get Sales Forecast")
+# -------- Predict button --------
+if st.button("Get Sales Forecast"):
+    make_prediction()
 
-    if submitted:
-        make_prediction()
-
-# ---------- Result ----------
+# -------- Result --------
 if st.session_state["pred"] is not None:
     st.metric("Predicted Sales", st.session_state["pred"])
 else:
