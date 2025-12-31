@@ -6,6 +6,27 @@ from joblib import load
 from pathlib import Path
 import calendar
 
+# ---------- Store mapping ----------
+STORE_MAP = {
+    "Astoria": 3,
+    "Lower Manhattan": 5,
+    "Hell’s Kitchen": 8,
+}
+
+
+defaults = {
+    "store_name": "Astoria",  # ID yox, ad
+    "year_num": 2023,
+    "month_num": 1,
+    "day_num": 1,
+    "avg_temp": 10.0,
+    "pred": None,
+}
+
+for k, v in defaults.items():
+    if k not in st.session_state:
+        st.session_state[k] = v
+
 # ---------- Session state ----------
 if "pred" not in st.session_state:
     st.session_state["pred"] = None
@@ -21,8 +42,10 @@ rf_model = load_model()
 
 # ---------- Prediction function ----------
 def make_prediction():
+    store_id = STORE_MAP[st.session_state.store_name]
+
     X_pred = pd.DataFrame({
-        "store_id": [st.session_state.store_id],
+        "store_id": [store_id],
         "year_num": [st.session_state.year_num],
         "month_num": [st.session_state.month_num],
         "day_num": [st.session_state.day_num],
@@ -32,18 +55,6 @@ def make_prediction():
     pred = rf_model.predict(X_pred)
     st.session_state["pred"] = round(pred[0], 2)
 
-defaults = {
-    "store_id": 3,
-    "year_num": 2023,
-    "month_num": 1,
-    "day_num": 1,
-    "avg_temp": 10,
-    "pred": None,
-}
-
-for k, v in defaults.items():
-    if k not in st.session_state:
-        st.session_state[k] = v
 
 # ---------- UI ----------
 st.title("☕ Coffee Shop Sales Predictor")
@@ -53,7 +64,11 @@ st.caption("Predict daily sales based on store, date, and temperature")
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    st.selectbox("Store ID", [3, 5, 8], key="store_id")
+    st.selectbox(
+        "Store",
+        options=list(STORE_MAP.keys()),  # adlar görünəcək
+        key="store_name"
+    )
 
 with col2:
     st.selectbox("Year", [2023, 2024], key="year_num")
@@ -88,6 +103,9 @@ if st.button("Get Sales Forecast"):
 
 # -------- Result --------
 if st.session_state["pred"] is not None:
-    st.metric("Predicted Sales", st.session_state["pred"])
+    st.metric("Predicted Sales", f"{st.session_state['pred']}$")
 else:
     st.info("Enter the inputs and click **Get Sales Forecast**")
+
+
+#streamlit run analysis/main.py
