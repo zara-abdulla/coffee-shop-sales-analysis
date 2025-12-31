@@ -15,6 +15,7 @@ STORE_MAP = {
 }
 
 
+
 defaults = {
     "store_name": "Astoria",  # ID yox, ad
     "year_num": 2023,
