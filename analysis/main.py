@@ -59,6 +59,11 @@ def make_prediction():
 # ---------- UI ----------
 st.title("☕ Coffee Shop Sales Predictor")
 st.caption("Predict daily sales based on store, date, and temperature")
+st.markdown("---")  # horizontal line for separation
+st.image("https://tenor.com/view/coffee-coffee-shop-cafe-street-gif-17572486.gif", width=450)
+
+
+
 
 # -------- Inputs (REAL-TIME) --------
 col1, col2, col3 = st.columns(3)
@@ -67,7 +72,8 @@ with col1:
     st.selectbox(
         "Store",
         options=list(STORE_MAP.keys()),  # adlar görünəcək
-        key="store_name"
+        key="store_name",
+        help="Select the coffee shop location"
     )
 
 with col2:
@@ -93,7 +99,8 @@ with col5:
         min_value=-30.0,
         max_value=40.0,
         step=1.0,
-        key="avg_temp"
+        key="avg_temp",
+        help="Average temperature in °C for the selected day"
     )
 
 
@@ -103,7 +110,8 @@ if st.button("Get Sales Forecast"):
 
 # -------- Result --------
 if st.session_state["pred"] is not None:
-    st.metric("Predicted Sales", f"{st.session_state['pred']}$")
+    st.metric("Predicted Sales", value=f"${st.session_state['pred']}",
+        delta=None)
 else:
     st.info("Enter the inputs and click **Get Sales Forecast**")
 
