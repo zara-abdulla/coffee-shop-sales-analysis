@@ -24,7 +24,7 @@ Below is the workflow diagram illustrating the end-to-end process of the Coffee 
 
 - **Weather data** is collected from an external API.
 
-
+---
 
 ### **Exploratory Data Analysis & Visualization**
 
@@ -98,6 +98,8 @@ Avg. Items per Transaction: 1–2
 - Coffee sales data and daily weather data are retrieved from a Dockerized MySQL database.  
 - A Random Forest model is built to predict daily sales.
 - The model helps explore the relationship between weather conditions and sales performance.
+
+---
 
 ### **Streamlit Dashboard**
 
