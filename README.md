@@ -7,7 +7,7 @@ An end-to-end data analysis project focused on coffee shop sales, combining sale
 
 This project aims to analyze coffee shop sales data and integrate external weather information via an API to build an interactive Streamlit dashboard. The goal is to understand overall sales patterns, customer behavior, and potential relationships between weather conditions and product demand.
 
-The project also includes a simple machine learning model to forecast sales based on historical sales and weather data. The model’s primary goal is to provide insights on how weather impacts coffee shop sales.
+The project also includes a simple machine learning model to forecast sales based on historical sales and weather data. The model’s primary goal is to provide insights on how weather and other features impacts coffee shop sales.
 
 
 ## Project Workflow Diagram
@@ -28,12 +28,58 @@ Below is the workflow diagram illustrating the end-to-end process of the Coffee 
 
 ### **Exploratory Data Analysis & Visualization**
 
-- Exploratory Data Analysis (EDA) is conducted to uncover patterns and trends.
-- Data cleaning, preprocessing, and feature extraction are performed.
-- Visualizations are created using **Matplotlib** and **Seaborn** to analyze:
-  - Sales trends
-  - Top-selling products
-  - Store location performance
+Exploratory Data Analysis (EDA) was conducted to identify key patterns and trends in coffee shop sales data.
+Visual insights were generated using Matplotlib and Seaborn to answer the following business questions:
+
+**Analysis Scope & Key Questions**
+
+- Time-Based Sales Analysis
+
+- When do sales peak by date, month, and hour?
+
+- Which days and months generate the highest revenue?
+
+**Product Performance Analysis**
+
+- Which products and categories generate the highest and lowest revenue?
+
+- Which products sell the highest quantities?
+
+- How do product categories perform over time and across store locations?
+
+**Store Location Analysis**
+
+- How does sales performance vary across store locations?
+
+- Which locations generate the highest monthly revenue?
+
+
+
+### **Sales Analysis Summary**
+
+- Sales revenue grows steadily from January to June 2023, peaking in June.
+
+- Morning hours (7:00–11:00 AM) generate the highest sales.
+
+- Monday leads in total revenue, while Friday has the highest transaction volume.
+
+- Coffee is the top category by revenue and transactions.
+
+- Barista Espresso is the highest revenue product.
+
+- Hell’s Kitchen is the best-performing store location.
+
+- Customers usually purchase 1–2 items per transaction, resulting in a low AOV.
+
+### **Key Metrics**
+
+Total Revenue: $698,812
+
+Total Transactions: 149,116
+
+Average Order Value: $5.00
+
+Avg. Items per Transaction: 1–2
 
 ### **Data Storage (Python → Dockerized MySQL)**
 
@@ -44,7 +90,7 @@ Below is the workflow diagram illustrating the end-to-end process of the Coffee 
 
 ### **Machine Learning**
 
-- Coffee sales and daily weather data are retrieved from a Dockerized MySQL database.  
+- Coffee sales data and daily weather data are retrieved from a Dockerized MySQL database.  
 - A Random Forest model is built to predict daily sales.
 - The model helps explore the relationship between weather conditions and sales performance.
 
@@ -58,5 +104,3 @@ Below is the workflow diagram illustrating the end-to-end process of the Coffee 
 - [**Zahra Abdullayeva**](https://github.com/zara-abdulla) 
 
 - [**Ziyafet Rzayeva**](https://github.com/Ziyafat98)
-
-- [**Sevinc Qiyasova**](https://github.com/sevinc-giyasova) 
