@@ -73,15 +73,14 @@ Visual insights were generated using Matplotlib and Seaborn to answer the follow
 
 ---
 
-### **Key Metrics**
+### Key Metrics
 
-Total Revenue: $698,812
-
-Total Transactions: 149,116
-
-Average Order Value: $5.00
-
-Avg. Items per Transaction: 1–2
+| Metric                       | Value        |
+|------------------------------|--------------|
+| Total Revenue                | $698,812     |
+| Total Transactions           | 149,116      |
+| Average Order Value (AOV)    | $5.00        |
+| Avg. Items per Transaction   | 1–2          |
 
 ---
 
