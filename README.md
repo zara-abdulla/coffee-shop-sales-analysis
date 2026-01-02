@@ -53,7 +53,7 @@ Visual insights were generated using Matplotlib and Seaborn to answer the follow
 
 - Which locations generate the highest monthly revenue?
 
-
+---
 
 ### **Sales Analysis Summary**
 
@@ -71,6 +71,8 @@ Visual insights were generated using Matplotlib and Seaborn to answer the follow
 
 - Customers usually purchase 1–2 items per transaction, resulting in a low AOV.
 
+---
+
 ### **Key Metrics**
 
 Total Revenue: $698,812
@@ -81,12 +83,15 @@ Average Order Value: $5.00
 
 Avg. Items per Transaction: 1–2
 
+---
+
 ### **Data Storage (Python → Dockerized MySQL)**
 
 - Cleaned and processed sales data is stored in a **Dockerized MySQL database**.
 - Weather data fetched from the API is also stored in the same database.
 - This setup ensures structured storage, reproducibility, and readiness for modeling.
 
+---
 
 ### **Machine Learning**
 
