@@ -31,7 +31,7 @@ Below is the workflow diagram illustrating the end-to-end process of the Coffee 
 Exploratory Data Analysis (EDA) was conducted to identify key patterns and trends in coffee shop sales data.
 Visual insights were generated using Matplotlib and Seaborn to answer the following business questions:
 
-#### Analysis Scope & Key Questions**
+#### Analysis Scope & Key Questions
 
 **Time-Based Sales Analysis**
 
