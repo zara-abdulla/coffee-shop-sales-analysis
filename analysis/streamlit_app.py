@@ -82,9 +82,40 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+st.sidebar.title("ℹ️ Information")
 
-st.sidebar.title("☕ Coffee Sales AI")
-st.sidebar.caption("ML-powered daily sales forecast")
+with st.sidebar.expander("📌 Project Info"):
+    st.markdown(
+        """
+        Coffee Shop Sales Predictor is a machine learning application that estimates
+        daily coffee shop sales using store location, date, and average temperature.
+
+        It helps optimize inventory planning, staff scheduling, and data-driven decisions.
+
+        **Built with:** Python, Streamlit, and Machine Learning.
+        """
+    )
+
+
+with st.sidebar.expander("📬 Contact Us"):
+    
+    st.markdown(
+        """
+        **Feel free to connect with us 👇**
+
+        👩‍💻 **Zahra Abdullayeva**  
+        🔗 [GitHub](https://github.com/zara-abdulla)  
+        🔗 [LinkedIn](https://linkedin.com/in/zahra-abdullayeva-23143a169)  
+
+        👨‍💻 **Ziyafat Rzayeva**  
+        🔗 [GitHub](https://github.com/Ziyafat98)  
+        🔗 [LinkedIn](https://linkedin.com/in/ziyafət-rzayeva-a45675321)  
+
+        📩 Open to collaboration & feedback
+        """
+    )
+
+
 
 
 # -------- Inputs --------
