@@ -49,6 +49,7 @@ def load_model():
 rf_model = load_model()
 
 
+
 # ---------- Prediction function ----------
 def make_prediction():
     store_id = STORE_MAP[st.session_state.store_name]
