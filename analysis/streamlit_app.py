@@ -1,4 +1,5 @@
-# streamlit run analysis/main.py
+
+#streamlit run analysis/streamlit_app.py
 
 import streamlit as st
 import pandas as pd
@@ -18,7 +19,7 @@ STORE_MAP = {
 
 defaults = {
     "store_name": "Astoria",  # ID yox, ad
-    "year_num": 2023,
+    "year_num": 2026,
     "month_num": 1,
     "day_num": 1,
     "avg_temp": 10.0,
@@ -82,6 +83,9 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+st.sidebar.title("☕ Coffee Sales AI")
+st.sidebar.caption("ML-powered daily sales forecast")
+
 
 # -------- Inputs --------
 col1, col2, col3 = st.columns(3)
@@ -95,7 +99,7 @@ with col1:
     )
 
 with col2:
-    st.selectbox("Year", [2023, 2024], key="year_num")
+    st.text_input("Year", value="2026", disabled=True)
 
 with col3:
     st.selectbox("Month", list(range(1, 13)), key="month_num")
@@ -139,6 +143,7 @@ st.markdown(
 )
 if st.button("Get Sales Forecast"):
     make_prediction()
+    
 
 
 
@@ -146,6 +151,8 @@ if st.button("Get Sales Forecast"):
 if st.session_state["pred"] is not None:
     st.metric("Predicted Sales", value=f"${st.session_state['pred']}",
         delta=None)
+    
+    
 else:
      st.markdown(
         """
@@ -155,5 +162,8 @@ else:
         """,
         unsafe_allow_html=True
     )
+     
 
-#streamlit run analysis/main.py
+
+
+#streamlit run analysis/streamlit_app.py
