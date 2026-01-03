@@ -66,10 +66,33 @@ def make_prediction():
 
 
 # ---------- UI ----------
-st.title("☕ Coffee Shop Sales Predictor")
-st.markdown(" #### Predict daily sales based on store, date, and temperature")
+st.markdown(
+    """
+    <h1 style='text-align: center; color: #fafafc;'>
+        ☕ Coffee Shop Sales Predictor
+    </h1>
+    """,
+    unsafe_allow_html=True
+)
 st.markdown("---")  # horizontal line for separation
-st.image("https://tenor.com/view/coffee-coffee-shop-cafe-street-gif-17572486.gif", width=450)
+
+st.markdown(
+    """
+    <h4 style='text-align: center; color: #fafafc;'>
+        Predict daily sales based on store, date, and temperature
+    </h4>
+    """,
+    unsafe_allow_html=True
+)
+
+st.markdown(
+    """
+    <div style='text-align: center;'>
+        <img src="https://tenor.com/view/coffee-coffee-shop-cafe-street-gif-17572486.gif" width="450">
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 st.markdown(
     """
     <style>
@@ -162,7 +185,8 @@ with col4:
 with col5:
     temp = st.slider(
         "🌡️ Avg Temperature (°C)",
-        -30, 40, 10, 1,
+        -30, 40, 
+        step=1,
         key="avg_temp"
     )
 
@@ -192,7 +216,6 @@ st.markdown(
 if st.button("Get Sales Forecast"):
     make_prediction()
     
-
 
 
 # -------- Result --------
