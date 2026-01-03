@@ -31,9 +31,11 @@ for k, v in defaults.items():
         st.session_state[k] = v
 
 
+
 # ---------- Session state ----------
 if "pred" not in st.session_state:
     st.session_state["pred"] = None
+
 
 
 # ---------- Load model ----------
@@ -44,6 +46,7 @@ def load_model():
     return load(MODEL_PATH)
 
 rf_model = load_model()
+
 
 
 # ---------- Prediction function ----------
@@ -82,6 +85,10 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
+
+# -------- Sidebar --------
+
 st.sidebar.title("ℹ️ Information")
 
 with st.sidebar.expander("📌 Project Info"):
@@ -92,7 +99,10 @@ with st.sidebar.expander("📌 Project Info"):
 
         It helps optimize inventory planning, staff scheduling, and data-driven decisions.
 
-        **Built with:** Python, Streamlit, and Machine Learning.
+        **Built with:** 
+        - Python
+        - Streamlit
+        - Machine Learning.
         """
     )
 
@@ -118,22 +128,9 @@ with st.sidebar.expander("📬 Contact Us"):
 
 
 
+
 # -------- Inputs --------
 col1, col2, col3 = st.columns(3)
-
-with col1:
-    st.selectbox(
-        "Store",
-        options=list(STORE_MAP.keys()),  # adlar görünəcək
-        key="store_name",
-        help="Select the coffee shop location"
-    )
-
-with col2:
-    st.text_input("Year", value="2026", disabled=True)
-
-with col3:
-    st.selectbox("Month", list(range(1, 13)), key="month_num")
 
 # Dynamic day logic
 max_day = calendar.monthrange(
@@ -142,20 +139,39 @@ max_day = calendar.monthrange(
 )[1]
 
 
+with col1:
+    st.selectbox("Day", list(range(1, max_day + 1)), key="day_num")
+
+with col2:
+    st.selectbox("Month", list(range(1, 13)), key="month_num")
+    
+with col3:
+    st.text_input("Year", value="2026", disabled=True)
+
+
 col4, col5 = st.columns(2)
 
 with col4:
-    st.selectbox("Day", list(range(1, max_day + 1)), key="day_num")
+    st.selectbox(
+        "Store",
+        options=list(STORE_MAP.keys()),  # adlar görünəcək
+        key="store_name",
+        help="Select the coffee shop location"
+    )
 
 with col5:
-    st.number_input(
-        "Avg Temperature (°C)",
-        min_value=-30.0,
-        max_value=40.0,
-        step=1.0,
-        key="avg_temp",
-        help="Average temperature in °C for the selected day"
+    temp = st.slider(
+        "🌡️ Avg Temperature (°C)",
+        -30, 40, 10, 1,
+        key="avg_temp"
     )
+
+    if temp <= 0:
+        st.caption("❄️ Cold day")
+    elif temp <= 20:
+        st.caption("🌤️ Mild weather")
+    else:
+        st.caption("🔥 Hot day")
 
 
 
@@ -172,6 +188,7 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
 if st.button("Get Sales Forecast"):
     make_prediction()
     
@@ -179,13 +196,28 @@ if st.button("Get Sales Forecast"):
 
 
 # -------- Result --------
+
 if st.session_state["pred"] is not None:
-    st.metric("Predicted Sales", value=f"${st.session_state['pred']}",
-        delta=None)
-    
-    
+    st.markdown(
+        f"""
+        <div style="
+            backdrop-filter: blur(8px);
+            background: rgba(255,255,255,0.12);
+            border-radius:16px;
+            padding:24px;
+            text-align:center;
+            color:#fafafc;
+        ">
+            <div style="font-size:14px;">Predicted Sales</div>
+            <div style="font-size:34px; font-weight:600;">
+                ${st.session_state['pred']}
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 else:
-     st.markdown(
+    st.markdown(
         """
         <div style='background-color:#93a387; color:#fafafc; padding:10px; border-radius:5px'>
         Enter the inputs and click <b>Get Sales Forecast</b>
@@ -193,8 +225,6 @@ else:
         """,
         unsafe_allow_html=True
     )
-     
-
 
 
 #streamlit run analysis/streamlit_app.py
