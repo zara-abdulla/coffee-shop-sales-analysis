@@ -112,10 +112,11 @@ st.markdown(
 
 
 # -------- Sidebar --------
-
+st.sidebar.image("images/side_img.png", width=300)
 st.sidebar.title("ℹ️ Information")
 
 with st.sidebar.expander("📌 Project Info"):
+    
     st.markdown(
         """
         Coffee Shop Sales Predictor is a machine learning application that estimates
