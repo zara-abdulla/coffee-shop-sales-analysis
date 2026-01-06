@@ -5,6 +5,7 @@ An end-to-end data analysis project focused on coffee shop sales, combining sale
 ## Live Streamlit App
 
 Explore the interactive sales prediction dashboard here:
+<br>
 👉 **Live App:** [Coffee Shop Sales Predictor](https://coffee-shop-sales-analysis-jcuv2xiszrog9veouyzrwp.streamlit.app/)
 
 
