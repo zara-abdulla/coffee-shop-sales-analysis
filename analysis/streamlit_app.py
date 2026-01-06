@@ -1,5 +1,4 @@
-
-#streamlit run analysis/streamlit_app.py
+# streamlit run analysis/streamlit_app.py
 
 import streamlit as st
 import pandas as pd
@@ -16,9 +15,9 @@ STORE_MAP = {
 }
 
 
-
+# ---------- Defaults ----------
 defaults = {
-    "store_name": "Astoria", 
+    "store_name": "Astoria",
     "year_num": 2026,
     "month_num": 1,
     "day_num": 1,
@@ -31,12 +30,11 @@ for k, v in defaults.items():
         st.session_state[k] = v
 
 
-
-
-# ---------- Session state ----------
-if "pred" not in st.session_state:
-    st.session_state["pred"] = None
-
+# ---------- Prediction history ----------
+if "history" not in st.session_state:
+    st.session_state["history"] = pd.DataFrame(
+        columns=["date", "store", "avg_temp", "predicted_sales"]
+    )
 
 
 # ---------- Load model ----------
@@ -47,7 +45,6 @@ def load_model():
     return load(MODEL_PATH)
 
 rf_model = load_model()
-
 
 
 # ---------- Prediction function ----------
@@ -62,8 +59,25 @@ def make_prediction():
         "avg_temp": [st.session_state.avg_temp],
     })
 
-    pred = rf_model.predict(X_pred)
-    st.session_state["pred"] = round(pred[0], 2)
+    pred = rf_model.predict(X_pred)[0]
+    pred = round(pred, 2)
+    st.session_state["pred"] = pred
+
+    date_str = f"{st.session_state.year_num}-" \
+               f"{st.session_state.month_num:02d}-" \
+               f"{st.session_state.day_num:02d}"
+
+    new_row = {
+        "date": date_str,
+        "store": st.session_state.store_name,
+        "avg_temp": st.session_state.avg_temp,
+        "predicted_sales": pred
+    }
+
+    st.session_state["history"] = pd.concat(
+        [st.session_state["history"], pd.DataFrame([new_row])],
+        ignore_index=True
+    )
 
 
 # ---------- UI ----------
@@ -75,7 +89,7 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-st.markdown("---")  # horizontal line for separation
+st.markdown("---")
 
 st.markdown(
     """
@@ -94,16 +108,16 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
 st.markdown(
     """
     <style>
     .stApp {
-        /* Ombre: Dark Blue -> Cornflower */
         background: linear-gradient(to bottom, #061e47, #68a4f1);
     }
     .stButton>button {
-        background-color: #2b6ad0;  /* Royal Blue button */
-        color: #fafafc;             /* Ivory text */
+        background-color: #2b6ad0;
+        color: #fafafc;
     }
     </style>
     """,
@@ -116,7 +130,6 @@ st.sidebar.image("images/side_img.png", width=300)
 st.sidebar.title("ℹ️ Information")
 
 with st.sidebar.expander("📌 Project Info"):
-    
     st.markdown(
         """
         Coffee Shop Sales Predictor is a machine learning application that estimates
@@ -125,15 +138,13 @@ with st.sidebar.expander("📌 Project Info"):
         It helps optimize inventory planning, staff scheduling, and data-driven decisions.
 
         **Built with:** 
-        - Python
-        - Streamlit
-        - Machine Learning.
+        - Python  
+        - Streamlit  
+        - Machine Learning
         """
     )
 
-
 with st.sidebar.expander("📬 Contact Us"):
-    
     st.markdown(
         """
         **Feel free to connect with us 👇**
@@ -151,46 +162,34 @@ with st.sidebar.expander("📬 Contact Us"):
     )
 
 
-
-
-
 # -------- Inputs --------
 col1, col2, col3 = st.columns(3)
 
-# Dynamic day logic
 max_day = calendar.monthrange(
     st.session_state.year_num,
     st.session_state.month_num
 )[1]
-
 
 with col1:
     st.selectbox("Day", list(range(1, max_day + 1)), key="day_num")
 
 with col2:
     st.selectbox("Month", list(range(1, 13)), key="month_num")
-    
+
 with col3:
     st.text_input("Year", value="2026", disabled=True)
-
 
 col4, col5 = st.columns(2)
 
 with col4:
     st.selectbox(
         "Store",
-        options=list(STORE_MAP.keys()),  # adlar görünəcək
-        key="store_name",
-        help="Select the coffee shop location"
+        options=list(STORE_MAP.keys()),
+        key="store_name"
     )
 
 with col5:
-    temp = st.slider(
-        "🌡️ Avg Temperature (°C)",
-        -30, 40, 
-        step=1,
-        key="avg_temp"
-    )
+    temp = st.slider("🌡️ Avg Temperature (°C)", -30, 40, step=1, key="avg_temp")
 
     if temp <= 0:
         st.caption("❄️ Cold day")
@@ -200,8 +199,6 @@ with col5:
         st.caption("🔥 Hot day")
 
 
-
-
 # -------- Predict button --------
 st.markdown(
     """
@@ -209,7 +206,6 @@ st.markdown(
     .stButton>button {
         background:#2d1674; color:#fafafc; font-size:16px; border-radius:8px;
     }
-    .stButton>button:hover { background:#1f0f5a; }
     </style>
     """,
     unsafe_allow_html=True
@@ -217,11 +213,9 @@ st.markdown(
 
 if st.button("Get Sales Forecast"):
     make_prediction()
-    
 
 
 # -------- Result --------
-
 if st.session_state["pred"] is not None:
     st.markdown(
         f"""
@@ -251,5 +245,17 @@ else:
         unsafe_allow_html=True
     )
 
+st.markdown("---")
 
-#streamlit run analysis/streamlit_app.py
+
+# -------- Prediction History Chart --------
+if not st.session_state["history"].empty:
+    st.markdown("### Prediction History")
+
+    df_chart = st.session_state["history"].copy()
+    df_chart["date"] = pd.to_datetime(df_chart["date"])
+    df_chart = df_chart.sort_values("date")
+
+    st.line_chart(
+        df_chart.set_index("date")["predicted_sales"]
+    )
