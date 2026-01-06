@@ -84,49 +84,27 @@ def make_prediction():
 st.markdown(
     """
     <h1 style='text-align: center; color: #fafafc;'>
-        ☕ Coffee Shop Sales Predictor
+        Coffee Shop Sales Predictor  &nbsp;☕
     </h1>
     """,
     unsafe_allow_html=True
 )
+
+
+col1, col2, col3 = st.columns([1,2,1])
+with col2:
+    st.image("images/str2.png", width=400)
+
 st.markdown("---")
 
 st.markdown(
     """
     <h4 style='text-align: center; color: #fafafc;'>
-        Predict daily sales based on store, date, and temperature
+        Predict daily sales based on date, store and temperature:
     </h4>
     """,
     unsafe_allow_html=True
 )
-
-st.markdown(
-    """
-    <div style='text-align: center;'>
-        <img src="https://tenor.com/view/coffee-coffee-shop-cafe-street-gif-17572486.gif" width="450">
-    </div>
-    """,
-    unsafe_allow_html=True
-)
-
-st.markdown(
-    """
-    <div style='text-align: center; margin-top:20px;'>
-        <img src="images/str1.png" width="450" style="border-radius:16px;">
-    </div>
-    """,
-    unsafe_allow_html=True
-)
-
-st.markdown(
-    """
-    <div style='text-align: center; margin-top:20px;'>
-        <img src="images/str2.png" width="450" style="border-radius:16px;">
-    </div>
-    """,
-    unsafe_allow_html=True
-)
-
 
 
 st.markdown(
@@ -167,17 +145,18 @@ with st.sidebar.expander("📌 Project Info"):
 with st.sidebar.expander("📬 Contact Us"):
     st.markdown(
         """
+        
         **Feel free to connect with us 👇**
 
-        👩‍💻 **Zahra Abdullayeva**  
+        **Zahra Abdullayeva**  
         🔗 [GitHub](https://github.com/zara-abdulla)  
         🔗 [LinkedIn](https://linkedin.com/in/zahra-abdullayeva-23143a169)  
 
-        👨‍💻 **Ziyafat Rzayeva**  
+        **Ziyafat Rzayeva**  
         🔗 [GitHub](https://github.com/Ziyafat98)  
         🔗 [LinkedIn](https://linkedin.com/in/ziyafət-rzayeva-a45675321)  
 
-        📩 Open to collaboration & feedback
+        🚀 Let’s collaborate and build something impactful
         """
     )
 
