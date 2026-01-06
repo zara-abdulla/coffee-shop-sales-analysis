@@ -2,7 +2,7 @@
 
 An end-to-end data analysis project focused on coffee shop sales, combining sales data with external weather data to perform data analysis, visualization, machine learning forecasting, and present insights through an interactive Streamlit dashboard.
 
-### Live Streamlit App
+## Live Streamlit App
 
 Explore the interactive sales prediction dashboard here:
 👉 **Live App:** [Coffee Shop Sales Predictor](https://coffee-shop-sales-analysis-jcuv2xiszrog9veouyzrwp.streamlit.app/)
