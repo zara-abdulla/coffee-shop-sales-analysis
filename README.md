@@ -7,7 +7,7 @@ An end-to-end data analysis project focused on coffee shop sales, combining sale
 
 This project aims to analyze coffee shop sales data and integrate external weather information via an API to build an interactive Streamlit dashboard. The goal is to understand overall sales patterns, customer behavior, and potential relationships between weather conditions and product demand.
 
-The project also includes a simple machine learning model to forecast sales based on historical sales and weather data. The model’s primary goal is to provide insights on how weather and other features impacts coffee shop sales.
+The project also includes a simple machine learning model to forecast sales based on historical sales and weather data. The model’s primary goal is to provide insights on how weather and other features impact coffee shop sales.
 
 
 ## Project Workflow Diagram
@@ -97,13 +97,15 @@ Visual insights were generated using Matplotlib and Seaborn to answer the follow
 - The model helps explore the relationship between weather conditions and sales performance.
 
 **Model Insights:**
-The machine learning model shows a strong positive relationship between time (months and days) and Total Sales, with sales increasing as time progresses. Temperature and Store Location has a low impact on Total Sales.
+The machine learning model shows a strong positive relationship between time (months and days) and Total Sales, with sales increasing as time progresses. Temperature and Store Location have a low impact on Total Sales.
 
 ---
 
 ### **Streamlit Dashboard**
 
-- All insights and results are presented in an interactive **Streamlit dashboard**
+A machine learning–powered Streamlit application that predicts daily coffee shop sales based on store location, date, and average temperature, providing an interactive interface to support data-driven decisions for sales forecasting, inventory planning, and staffing optimization.
+
+
 
 ## Team Members
 
