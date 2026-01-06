@@ -97,7 +97,7 @@ Visual insights were generated using Matplotlib and Seaborn to answer the follow
 - The model helps explore the relationship between weather conditions and sales performance.
 
 **Model Insights:**
-The machine learning model shows a strong positive relationship between time (months and days) and Total Sales, with sales increasing as time progresses. Average Temperature has a low impact on sales, while Store ID / Store Location has minimal influence on Total Sales.
+The machine learning model shows a strong positive relationship between time (months and days) and Total Sales, with sales increasing as time progresses. Temperature and Store Location has a low impact on Total Sales.
 
 ---
 
