@@ -111,6 +111,26 @@ st.markdown(
 
 st.markdown(
     """
+    <div style='text-align: center; margin-top:20px;'>
+        <img src="images/str1.png" width="450" style="border-radius:16px;">
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+st.markdown(
+    """
+    <div style='text-align: center; margin-top:20px;'>
+        <img src="images/str2.png" width="450" style="border-radius:16px;">
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+
+
+st.markdown(
+    """
     <style>
     .stApp {
         background: linear-gradient(to bottom, #061e47, #68a4f1);
