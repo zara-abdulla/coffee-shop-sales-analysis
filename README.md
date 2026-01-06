@@ -96,6 +96,9 @@ Visual insights were generated using Matplotlib and Seaborn to answer the follow
 - A Random Forest model is built to predict daily sales.
 - The model helps explore the relationship between weather conditions and sales performance.
 
+**Model Insights:**
+The machine learning model shows a strong positive relationship between time (months and days) and Total Sales, with sales increasing as time progresses. Average Temperature has a low impact on sales, while Store ID / Store Location has minimal influence on Total Sales.
+
 ---
 
 ### **Streamlit Dashboard**
