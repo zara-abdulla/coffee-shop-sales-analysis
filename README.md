@@ -1,6 +1,6 @@
 # Coffee Shop Sales Analysis - End To End Project
 
-An end-to-end data analysis project focused on coffee shop sales, combining sales data with external weather data to perform data analysis, visualization, machine learning forecasting, and present insights through an interactive Streamlit dashboard.
+An end-to-end data analysis project focused on coffee shop sales, combining sales data with external weather data to perform data analysis, visualization, machine learning forecasting, and present insights through an interactive Streamlit visualization.
 
 ## Live Streamlit App
 
@@ -73,7 +73,6 @@ Visual insights were generated using Matplotlib and Seaborn to answer the follow
 
 - Hell’s Kitchen is the best-performing store location.
 
-- Customers usually purchase 1–2 items per transaction, resulting in a low AOV.
 
 ---
 
@@ -83,6 +82,7 @@ Visual insights were generated using Matplotlib and Seaborn to answer the follow
 |------------------------------|--------------|
 | Total Revenue                | $698,812     |
 | Total Transactions           | 149,116      |
+| Total Items Sold             | 214,470      |
 | Average Order Value (AOV)    | $5.00        |
 | Avg. Items per Transaction   | 1–2          |
 
