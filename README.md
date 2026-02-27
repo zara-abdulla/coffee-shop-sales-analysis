@@ -6,7 +6,7 @@ An end-to-end data analysis project focused on coffee shop sales, combining sale
 
 Explore the interactive sales prediction dashboard here:
 <br>
-👉 **Live App:** [Coffee Shop Sales Predictor](https://coffee-shop-sales-analysis-jcuv2xiszrog9veouyzrwp.streamlit.app/)
+👉 **Live App:** [Coffee Shop Sales Predictor](https://coffee-shop-sales-analysis-6kolsz38bujwzhsrjsa5hl.streamlit.app/)
 
 
 ## Project Overview
